@@ -30,16 +30,16 @@ public class EchoServer {
         final EchoServerHander serverHander = new EchoServerHander();
         EventLoopGroup group = new NioEventLoopGroup();
         try {
-            ServerBootstrap b = new ServerBootstrap();
+            ServerBootstrap b = new ServerBootstrap();     //引导和绑定服务器
             b.group(group)
-                    .channel(NioServerSocketChannel.class)
-                    .localAddress(new InetSocketAddress(port))
+                    .channel(NioServerSocketChannel.class)           //进行事件的处理
+                    .localAddress(new InetSocketAddress(port))          //指定服务器绑定
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         protected void initChannel(SocketChannel ch) throws Exception {
-                            ch.pipeline().addLast(serverHander);
+                            ch.pipeline().addLast(serverHander);         //使用一个EchoServerHandler的实例初始化每一个新的Channel
                         }
                     });
-            ChannelFuture f = b.bind().sync();
+            ChannelFuture f = b.bind().sync();          //调用ServerBootstrap.bind()方法以绑定服务器
             f.channel().closeFuture().sync();
         }finally {
 
