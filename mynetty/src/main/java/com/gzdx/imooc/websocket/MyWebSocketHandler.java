@@ -1,6 +1,5 @@
 package com.gzdx.imooc.websocket;
 
-import com.gzdx.imooc.websocket.NettyConfig;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;
@@ -47,13 +46,18 @@ public class MyWebSocketHandler extends SimpleChannelInboundHandler<Object> {
     }
 
     @Override
-    protected void channelRead0(ChannelHandlerContext channelHandlerContext, Object msg) throws Exception {
+    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         if (msg instanceof FullHttpRequest) {
-            handHttpRequest(channelHandlerContext, (FullHttpRequest) msg);
+            handHttpRequest(ctx, (FullHttpRequest) msg);
         } else if (msg instanceof WebSocketFrame) {
-            handWebSocketFrame(channelHandlerContext, (WebSocketFrame) msg);
+            handWebSocketFrame(ctx, (WebSocketFrame) msg);
         }
     }
+
+    @Override
+    protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
+    }
+
 
     /**
      * 处理客户端与服务器之间的webSocket业务

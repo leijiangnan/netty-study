@@ -5,7 +5,8 @@
     <title>WebSocket客户端</title>
     <script>
         var socket;
-        socket = new WebSocket("ws://localhost:8888/websocket");
+        socket = new WebSocket("ws://127.0.0.1:8888/websocket");
+        console.log(socket)
         socket.onmessage = function (event) {
             var ta = document.getElementById('responseContent');
             ta.value += event.data + "\r\n";
