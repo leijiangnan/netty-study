@@ -12,7 +12,7 @@ public class Server {
     public static void main(String[] args) throws IOException {
 
         // 实例化，并监听端口
-        AsynchronousServerSocketChannel server =
+        final AsynchronousServerSocketChannel server =
                 AsynchronousServerSocketChannel.open().bind(new InetSocketAddress(8080));
 
         // 自己定义一个 Attachment 类，用于传递一些信息
