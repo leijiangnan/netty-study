@@ -3,6 +3,9 @@ package com.gadx.test;
 import com.gzdx.domain.User;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class TestOne {
 
     private static final String BASE = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -87,4 +90,11 @@ public class TestOne {
        user.setPassWord("111");
        System.out.println(user);
    }
+
+    @Test
+    public void test7(){
+        String aa = "";
+        List<String> strings = Arrays.asList(aa.split(","));
+        System.out.println(strings.size());
+    }
 }
